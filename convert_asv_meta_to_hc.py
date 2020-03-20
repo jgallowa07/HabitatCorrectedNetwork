@@ -48,7 +48,7 @@ if __name__=='__main__':
     md.set_index('sample_name', inplace=True)
 
     # a data frame holding all the the asv counts.
-    df = pd.read_csv(args.ASV,sep='\t',header=(0)).replace(np.nan, '?', regex=True)
+    df = pd.read_csv(args.ASV,sep='\t',header=(0)).replace(np.nan, '0.0', regex=True)
 
     if args.subset_ava != None:
         # Samples ids that exist in our df and belong to the subset ava

@@ -1,16 +1,18 @@
 
 
-CONFIG=config.cfg
 TEMP_CONVERT_DATA_DICT=test_pipe2
 ASV=../emp_data/VMP_16SmergedASVs_NOmito.txt
 META=../emp_data/metadata.txt
+CONFIG=config.cfg
+DOC=${TEMP_CONVERT_DATA_DICT}/README.md
 
 # create the directory to store the formattted input files and results
 # from running habitat correction.
 mkdir ${TEMP_CONVERT_DATA_DICT}
 
-# TODO echo into a readme where the data came from.
-echo config: ${CONGIF} 
+# echo into a readme where the data came from.
+echo config: > ${DOC}
+cat ${CONFIG} >> ${DOC}
 
 # convert files
 python3 convert_asv_meta_to_hc.py \
@@ -27,3 +29,5 @@ python HabitatCorrectedNetwork.py \
     -out ${TEMP_CONVERT_DATA_DICT}/pipe_test \
     -s config -sfn ${CONFIG}
 
+# comment this out if you would like to keep the formatted files
+rm ${TEMP_CONVERT_DATA_DICT}/*_form.txt
