@@ -38,7 +38,8 @@ if __name__=='__main__':
         help="This should point to where you want the formatted \
         metadata table written to")
         
-    parser.add_argument('--subset_ava', dest='subset_ava',action='store',default=None)
+    parser.add_argument('--subset_ava', dest='subset_ava',
+        action='store',default=None)
 
     args=parser.parse_args()
     

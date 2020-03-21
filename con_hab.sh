@@ -1,33 +1,44 @@
 
+# The directory where you would like the 
+# correction results to end up.
+RESULTS_DIR=test_pipe2
 
-TEMP_CONVERT_DATA_DICT=test_pipe2
+# The ASV table you would like to run the analysis on.
 ASV=../emp_data/VMP_16SmergedASVs_NOmito.txt
+
+# The metadata table for each of the samples in the 
+# asv table
 META=../emp_data/metadata.txt
+
+# config file should be in the same directory
+# as where you run this script.
 CONFIG=config.cfg
-DOC=${TEMP_CONVERT_DATA_DICT}/README.md
+DOC=${RESULTS_DIR}/${CONFIG}
 
 # create the directory to store the formattted input files and results
 # from running habitat correction.
-mkdir ${TEMP_CONVERT_DATA_DICT}
+mkdir ${RESULTS_DIR}
 
-# echo into a readme where the data came from.
-echo config: > ${DOC}
+# make a copy of the config file and this file 
+# in the results directory
 cat ${CONFIG} >> ${DOC}
+cat con_hab.sh >> ${RESULTS_DIR}/con_hab.sh
 
 # convert files
 python3 convert_asv_meta_to_hc.py \
     --threshold 0 \
     --ASV ${ASV} \
     --meta ${META} \
-    --out_a ${TEMP_CONVERT_DATA_DICT}/asv_form.txt \
-    --out_m ${TEMP_CONVERT_DATA_DICT}/meta_form.txt
+    --out_a ${RESULTS_DIR}/asv_form.txt \
+    --out_m ${RESULTS_DIR}/meta_form.txt
 
 # run hab corr
 python HabitatCorrectedNetwork.py \
-    -A ${TEMP_CONVERT_DATA_DICT}/asv_form.txt \
-    -S ${TEMP_CONVERT_DATA_DICT}/meta_form.txt \
-    -out ${TEMP_CONVERT_DATA_DICT}/pipe_test \
+    -A ${RESULTS_DIR}/asv_form.txt \
+    -S ${RESULTS_DIR}/meta_form.txt \
+    -out ${RESULTS_DIR}/pipe_test \
     -s config -sfn ${CONFIG}
 
-# comment this out if you would like to keep the formatted files
-rm ${TEMP_CONVERT_DATA_DICT}/*_form.txt
+# comment this out if you would 
+# like to keep the formatted files
+rm ${RESULTS_DIR}/*_form.txt
