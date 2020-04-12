@@ -1,0 +1,10 @@
+name: habcor_py3
+channels:
+  - conda-forge
+  - defaults
+  - bioconda
+  - terhorst
+dependencies:
+  - numpy
+  - pandas
+  - argparse

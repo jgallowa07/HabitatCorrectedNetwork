@@ -1,0 +1,13 @@
+name: habcor_py2
+channels:
+  - conda-forge
+  - defaults
+  - bioconda
+  - terhorst
+dependencies:
+  - python=2.7
+  - numpy
+  - scipy
+  - statsmodels
+  - ConfigParser  
+  - argparse

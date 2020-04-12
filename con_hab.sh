@@ -26,7 +26,8 @@ cat ${CONFIG} > ${DOC}
 cat con_hab.sh > ${RESULTS_DIR}/con_hab.sh
 
 # convert files
-python3 convert_asv_meta_to_hc.py \
+conda deactivate && conda activate habcor_py3
+python convert_asv_meta_to_hc.py \
     --threshold 100  \
     --ASV ${ASV} \
     --meta ${META} \
@@ -34,7 +35,8 @@ python3 convert_asv_meta_to_hc.py \
     --out_m ${RESULTS_DIR}/meta_form.txt
 
 # run hab corr
-python HabitatCorrectedNetwork.py \
+conda deactivate && conda activate habcor_py2
+python2 HabitatCorrectedNetwork.py \
     -A ${RESULTS_DIR}/asv_form.txt \
     -S ${RESULTS_DIR}/meta_form.txt \
     -out ${RESULTS_DIR}/pipe_test \
