@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 # The directory where you would like the 
 # correction results to end up.
@@ -21,12 +22,12 @@ mkdir ${RESULTS_DIR}
 
 # make a copy of the config file and this file 
 # in the results directory
-cat ${CONFIG} >> ${DOC}
-cat con_hab.sh >> ${RESULTS_DIR}/con_hab.sh
+cat ${CONFIG} > ${DOC}
+cat con_hab.sh > ${RESULTS_DIR}/con_hab.sh
 
 # convert files
 python3 convert_asv_meta_to_hc.py \
-    --threshold 0 \
+    --threshold 100  \
     --ASV ${ASV} \
     --meta ${META} \
     --out_a ${RESULTS_DIR}/asv_form.txt \

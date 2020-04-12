@@ -66,7 +66,7 @@ if __name__=='__main__':
 
     # Make a list which ties together all the species. 
     # taxa_list=['-'.join(i[1].tolist()+[str(index)]) for index,i in enumerate(df[['Family.x','Genus.x','Species.x']].iterrows())]
-    taxa_list=['-'.join(i[1].tolist()+[str(index)]) for index,i in enumerate(df[['Family.x','Genus.x']].iterrows())]
+    taxa_list=['-'.join(i[1].tolist()+[str(index)]) for index,i in enumerate(df[['Family','Genus']].iterrows())]
 
     # {i : family-genus-species}
     # this dictionary will be used to replace the index 
